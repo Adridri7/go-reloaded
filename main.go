@@ -13,3 +13,5 @@ func main() {
 	resultfile.WriteString(core.ApplyChanges(text))
 	resultfile.Close()
 }
+
+//a
