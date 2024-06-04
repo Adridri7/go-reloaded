@@ -16,7 +16,7 @@ func ApplyChanges(str string) string {
 		case item == "(bin)":
 			match[idx-1] = strconv.Itoa(AtoiBase(match[idx-1], "01"))
 		case item == "(hex)":
-			match[idx-1] = strconv.Itoa(AtoiBase(match[idx-1], "0123456789ABCDEF"))
+			match[idx-1] = strconv.Itoa(AtoiBase(match[idx-1], "0123456789abcdef"))
 		case item == "(cap)":
 			match[idx-1] = Capitalize(match[idx-1])
 		case item == "(up)":
