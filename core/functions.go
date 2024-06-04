@@ -4,7 +4,6 @@ import (
 	"os"
 	"regexp"
 	"strconv"
-	"strings"
 )
 
 func ApplyChanges(str string) string {
@@ -27,15 +26,15 @@ func ApplyChanges(str string) string {
 		case isNTag(item):
 			n, tag := nTag(item)
 			cpt := 0
-			for _, i := range match[idx-1-n : idx] {
+			for _, i := range match[idx-n : idx] {
 				if tag == "up" {
-					match[idx-1-n+cpt] = ToUpper(i)
+					match[idx-n+cpt] = ToUpper(i)
 				}
 				if tag == "cap" {
-					match[idx-1-n+cpt] = Capitalize(i)
+					match[idx-n+cpt] = Capitalize(i)
 				}
 				if tag == "low" {
-					match[idx-1-n+cpt] = ToLower(i)
+					match[idx-n+cpt] = ToLower(i)
 				}
 				cpt++
 			}
@@ -188,29 +187,6 @@ func maj(s string) string {
 	return res
 }
 
-func expToInt(str string) int {
-	res := ""
-	for _, char := range str {
-		if char >= '0' && char <= '9' {
-			res += string(char)
-		}
-	}
-	i, _ := strconv.Atoi(res)
-	return i
-}
-
-func replaceWord(str string, index int, newWord, lastword string) (newStr string) {
-	cpt := 0
-	for range lastword {
-		cpt++
-	}
-	newStr = str[:index] + " " + newWord + " " + str[index+cpt+1:]
-	newStr = strings.TrimSpace(newStr)
-	newStr = strings.ReplaceAll(newStr, "  ", " ")
-
-	return newStr
-}
-
 func AtoiBase(s string, base string) int {
 	res := 0
 	cpt := len(s) - 1
@@ -236,5 +212,3 @@ func RecursivePower(nb int, power int) (res int) {
 		return nb * RecursivePower(nb, power-1)
 	}
 }
-
-//a
